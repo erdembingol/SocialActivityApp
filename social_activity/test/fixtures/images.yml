@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  adress: MyString
+  is_user_or_activity: false
+  belong_id: 1
+
+two:
+  adress: MyString
+  is_user_or_activity: false
+  belong_id: 1

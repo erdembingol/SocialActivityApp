@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  place_name: MyString
+  place_adress: MyText
+  start_date: 2014-05-07
+  finish_date: 2014-05-07
+  paid: MyString
+  age_group: MyString
+  gender: MyString
+  explain: MyText
+
+two:
+  name: MyString
+  place_name: MyString
+  place_adress: MyText
+  start_date: 2014-05-07
+  finish_date: 2014-05-07
+  paid: MyString
+  age_group: MyString
+  gender: MyString
+  explain: MyText
