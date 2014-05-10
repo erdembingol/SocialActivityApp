@@ -8,6 +8,14 @@ Bundler.require(*Rails.groups)
 
 module SocialActivity
   class Application < Rails::Application
+
+    config.encoding = "utf-8"
+
+    config.filter_parameters += [:password]
+
+    config.assets.enabled = true
+
+    config.assets.version = '1.0'
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

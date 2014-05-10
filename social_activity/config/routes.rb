@@ -1,12 +1,28 @@
 SocialActivity::Application.routes.draw do
 
   resources :activities
-
+  resources :mainpage
+  resources :activity_detail
+  resources :user_save
+  resources :activity_save
+  resources :user_profil
+  resources :sessions
   resources :users
 
   resources :comments
 
   resources :images
+
+  get ':controller(/:action(/:id))(.:format)'
+  post ':controller(/:action(/:id(.:format)))'
+  root :to => 'sessions#login'
+  get "signup", :to => "users#new"
+  get "login", :to => "sessions#login"
+  get "logout", :to => "sessions#logout"
+  get "home", :to => "sessions#home"
+  get "profile", :to => "sessions#profile"
+  get "setting", :to => "sessions#setting"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,3 @@
+class ActivityDetailController < ApplicationController
+	
+end

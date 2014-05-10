@@ -1,29 +1,21 @@
 class UsersController < ApplicationController
-	def index
 
-	end
+	before_filter :save_login_state, :only => [:new, :create]
 
-	def show
+  	def new
+        #Signup Form
+        @user = User.new     
+  	end
 
-	end
-
-	def new
-
-	end
-
-	def create
-
-	end
-
-	def edit
-
-	end
-
-	def update
-
-	end
-
-	def destroy
-
-	end
+    def create
+    	@user = User.new(params[:user])
+    	if @user.save
+    		flash[:notice] = "You Signed up successfully"
+        flash[:color]= "valid"
+      else
+        flash[:notice] = "Form is invalid"
+        flash[:color]= "invalid"
+      end
+      render "new"
+    end
 end

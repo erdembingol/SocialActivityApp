@@ -1,6 +1,6 @@
-class ActivitiesController < ApplicationController
+class UserProfilController < ApplicationController
 	def index
-		@activities = Activity.all
+		@activity = Activity.find()
 	end
 
 	def show
@@ -8,11 +8,11 @@ class ActivitiesController < ApplicationController
 	end
 
 	def new
-		
+
 	end
 
 	def create
-		
+
 	end
 
 	def edit

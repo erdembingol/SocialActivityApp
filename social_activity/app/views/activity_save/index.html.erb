@@ -1,0 +1,36 @@
+<h1> Yeni Etkinlik Kayıt </h1>
+<%= form_for @activity do |f| %>
+	<p>
+		Etkinlik Adı : <%= f.text_field :name %>
+	</p>
+	<p>
+		Mekan İsmi : <%= f.text_field :place_name %>
+	</p>
+	<p>
+		Mekan Adress : <%= f.text_area :place_adress %>
+	</p>
+	<p>
+		Başlangıç Tarihi : <%= f.date_select :start_date %>
+	</p>
+	<p>
+		Bitiş Tarihi : <%= f.date_select :finish_date %>
+	</p>
+	<p>
+		Ücret : <%= f.text_field :paid %>
+	</p>
+	<p>
+		Yaş Grubu : <%= f.select :age_group, options_for_select(%w[0-7 7-14 14-20 20-50 50-70]) %>
+	</p>
+	<p>
+		Cinsiyet : <%= f.select :gender, options_for_select(%w[Hepsi Erkek Kadın]) %>
+	</p>
+	<p>
+		Açıklama : <%= f.text_area :explain %>
+	</p>
+	<p>
+		Etkinlik Resimleri : <%= f.file_field  :image1 %></br>	
+	</p>
+	<p>
+		<%= f.submit "Etkinlik Oluştur" %>
+	</p>
+<% end %> 

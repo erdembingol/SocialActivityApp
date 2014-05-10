@@ -1,0 +1,21 @@
+<p> <%  @user.profil_image @user.name @user.lastname %> </p>
+
+<% end %>
+
+<p> Katılmayı Düşündüğü Etkinlikler </p>
+
+<% @joined_activities.each do |joined_activity| %>
+	<p> <% joined_activity.name %> </p>
+	<p> <% joined_activity.place_name %> </p>
+	<p> Start Date : <% joined_activity.start_date %> 
+		Finish Date : <% joined_activity.finish_date %> </p>
+<% end %> 
+
+<p> Katıldığı Etkinlikler </p>
+
+<% @joined_think_activities.each do |joined_think_activity| %>
+	<p> <% joined_think_activity.name %> </p>
+	<p> <% joined_think_activity.place_name %> </p>
+	<p> Start Date : <% joined_think_activity.start_date %> 
+		Finish Date : <% joined_think_activity.finish_date %> </p>
+<% end %>

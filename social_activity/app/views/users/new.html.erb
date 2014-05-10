@@ -1,0 +1,38 @@
+<% @page_title = "UserAuth | Signup" -%>
+<div class= "Sign_Form">
+  <h1>Sign Up</h1>
+  <%= form_for(:user, :url => {:controller => 'users', :action => 'create'}) do |f| %>
+
+    <p>
+      Adı : <%= f.text_field :name %>
+    </p>
+    <p>
+      Soyadı : <%= f.text_field :lastname %>
+    </p>
+    <p>
+      Doğum Tarihi : <%= f.date_select :birth_date %>
+    </p>
+    <p>
+      Cinsiyet : <%= f.select :gender, options_for_select(%w[Erkek Kadın]) %>
+    </p>
+    <p>
+      Profil İmage : <%= f.file_field :profil_image %>
+    </p>
+    <p>
+      Adres : <%= f.text_area :adress %>
+    </p>
+    <p>
+      Password : <%= f.password_field :password %>
+    </p>
+
+    <%= f.submit "Üye Kaydet" %>
+  <% end %>
+
+  <% if @user.errors.any? %>
+  <ul class="Signup_Errors">
+    <% for message_error in @user.errors.full_messages %>
+      <li>* <%= message_error %></li>
+      <% end %>
+  </ul>
+  <% end %>
+</div>

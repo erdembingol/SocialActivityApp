@@ -1,0 +1,12 @@
+<p> <%  @activity.profil_image @activity.name @activity.place_name %> </p>
+
+<% end %>
+
+<%= form_for @activity do |f| %>
+	<p>
+		Başlangıç Tarihi : <%= f.date_select :start_date %>
+	</p>
+	<p>
+		<%= f.submit "Listele" %>
+	</p>
+<% end %>
