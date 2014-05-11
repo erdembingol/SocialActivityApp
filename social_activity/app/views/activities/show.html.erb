@@ -1,0 +1,39 @@
+<p> 
+	Etkinlik Resmi : <%= image_tag(@activity_image.image, :size => "64x64", :alt => "Show Group") %>
+</p>
+<p> 
+	Etkinlik Adı : <%= @activity.name %>
+</p>
+<p>
+ 	Etkinlik Yeri : <%= @activity.place_name %> 
+</p>
+<p> 
+	Start Date : <%= @activity.start_date %> 
+	Finish Date : <%= @activity.finish_date %>
+</p>
+<p> 
+	Fiyat : <%= @activity.paid %>
+</p>
+<p> 
+	Etkinlik Açıklama : <%= @activity.explain %>
+</p>
+<p> 
+	Etkinlik Adresi: <%= @activity.place_adress %>
+</p>
+
+<h4> Yorumlar </h4>
+<% @commentts.each do |commentt| %>
+	<p> 
+		Etkinlik Resmi : <%= image_tag(commentt.image, :size => "64x64", :alt => "Show Group") %>
+	</p>
+	<p>
+	 	Etkinlik Yeri : <%= commentt.body %> 
+	</p>
+	<p> 
+		Created : <%= commentt.created_at %> 
+	</p>
+	<hr>
+<% end %> 
+
+
+

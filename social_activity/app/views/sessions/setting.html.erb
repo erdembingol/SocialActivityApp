@@ -1,5 +1,5 @@
 <h1> Yeni Etkinlik Kayıt </h1>
-<%= form_for(:activity, :url => {:controller => 'activities', :action => 'create'}) do |f| %>
+<%= form_for @activity do |f| %>
 	<p>
 		Etkinlik Adı : <%= f.text_field :name %>
 	</p>

@@ -1,0 +1,18 @@
+<h1> Son Eklenen Etkinlikler </h1>
+
+<% @activities.each do |activity| %>
+	<p> 
+		Etkinlik Resmi : <%= image_tag(activity.image, :size => "64x64", :alt => "Show Group") %>
+	</p>
+	<p> 
+		Etkinlik Adı : <%= link_to activity.name, activity %>
+	</p>
+	<p>
+	 	Etkinlik Yeri : <%= activity.place_name %> 
+	</p>
+	<p> 
+		Start Date : <%= activity.start_date %> 
+		Finish Date : <%= activity.finish_date %>
+	</p>
+	<hr>
+<% end %> 

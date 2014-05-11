@@ -4,24 +4,39 @@ class SessionsController < ApplicationController
 	before_filter :save_login_state, :only => [:index, :login, :login_attempt]
 
 	def index
-		@authorized_user = User.new
+		#@authorized_user = User.new
 	end 
 
 	def home
-		#Home Page
+		@activities = Activity.find_by_sql "select u.image, a.* from activity_images u, activities a 
+						where u.activity_id == a.id ORDER BY a.id DESC LIMIT 5"
 	end
 
 	def profile
-		#Profile Page
+		@user = User.find(session[:user_id])
+		#@user_image = UserImage.find_by_user_id(session[:user_id])
 	end
 
 	def setting
 		#Setting Page
+		#@activity = Activity.new
+		#redirect_to(:action => 'activity_save#index')
 	end
+
+	def create
+		#@activity = Activity.new(params[:activity]);
+
+		#if @activity.save
+		#	 flash[:notice] = "Activity was saved"
+		#	 redirect_to(:action => 'setting')
+		#else
+		#	render "setting"
+		#end	
+	end	
 
 	def login
 		#Login Form
-		@authorized_user = User.new
+		#@authorized_user = User.new
 	end
 
 	def login_attempt

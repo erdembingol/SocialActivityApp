@@ -1,0 +1,6 @@
+<%= form_for(:commentt, :url => {:controller => 'activities', :action => 'do_comment'}) do |f| %>
+
+	<p>
+		<%= f.text_area :body %> <br> <%= f.submit "Yorum Yap" %>
+	</p>
+<% end %>

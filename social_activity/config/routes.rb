@@ -21,7 +21,8 @@ SocialActivity::Application.routes.draw do
   get "logout", :to => "sessions#logout"
   get "home", :to => "sessions#home"
   get "profile", :to => "sessions#profile"
-  get "setting", :to => "sessions#setting"
+  get "all_activities", :to => "activities#index"
+  get "setting", :to => "activities#new"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
