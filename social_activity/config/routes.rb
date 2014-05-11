@@ -23,6 +23,7 @@ SocialActivity::Application.routes.draw do
   get "profile", :to => "sessions#profile"
   get "all_activities", :to => "activities#index"
   get "setting", :to => "activities#new"
+  get "katilacagim", :to => "activities#join"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

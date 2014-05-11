@@ -14,8 +14,24 @@ class SessionsController < ApplicationController
 
 	def profile
 		@user = User.find(session[:user_id])
+
+		@joined_activities = Activity.find_by_sql "select ai.image, a.* from activity_images ai, activities a, 
+			joined_activities ja where ja.user_id == '#{session[:user_id]}' and ja.activity_id == a.id and ai.activity_id == a.id"
+		@joined_activities_size = @joined_activities.size
+
+		@joined_think_activities = Activity.find_by_sql "select ai.image, a.* from activity_images ai, activities a, 
+			joined_think_activities ja where ja.user_id == '#{session[:user_id]}' and ja.activity_id == a.id and ai.activity_id == a.id"
+		@joined_think_activities_size = @joined_think_activities.size
+
+		#@last_joined_activities = JoinedActivity.find_by_sql "select ai.image, a.* from activity_images ai, activities a, 
+			#{}joined_activities ja where ja.user_id == 'session[:user_id]' and ja.activity_id == a.id ORDER BY a.id DESC LIMIT 1"
 		#@user_image = UserImage.find_by_user_id(session[:user_id])
 	end
+
+	#def join
+	#	@joined_think_activity = JoinedThinkActivity.new(:user_id => session[:user_id], :activity_id => get_activity_id)#######################
+	#	@joined_think_activity.save
+	#end 
 
 	def setting
 		#Setting Page

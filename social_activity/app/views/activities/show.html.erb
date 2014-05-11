@@ -1,3 +1,5 @@
+<%= link_to "Katılacağım", :katilacagim %>
+
 <p> 
 	Etkinlik Resmi : <%= image_tag(@activity_image.image, :size => "64x64", :alt => "Show Group") %>
 </p>
@@ -6,6 +8,9 @@
 </p>
 <p>
  	Etkinlik Yeri : <%= @activity.place_name %> 
+</p>
+<p> 
+	Yaş Grubu : <%= @activity.age_group %>
 </p>
 <p> 
 	Start Date : <%= @activity.start_date %> 
