@@ -105,23 +105,31 @@ class ActivitiesController < ApplicationController
 	#end	
 
 	def create
-		@activity = Activity.new(params[:activity])
-    	if @activity.save
-    		flash[:notice] = "Activity was saved"
-        	flash[:color]= "valid"
-      	else
-        	flash[:notice] = "Activity was not saved"
-        	flash[:color]= "invalid"
-      	end
-      	@activity = Activity.last
-      	@image = ActivityImage.new
-      	@image.activity_id = @activity.id 
-      	@image.image = params[:activity][:image1].original_filename.to_s
-		@image.save
+		@user = User.find(session[:user_id])
+		if @user.password.to_s.eql? session[:admin_password].to_s
+			@activity = Activity.new(params[:activity])
+	    	if @activity.save
+	    		flash[:notice] = "Activity was saved"
+	        	flash[:color]= "valid"
+	      	else
+	        	flash[:notice] = "Activity was not saved"
+	        	flash[:color]= "invalid"
+	      	end
+	      	@activity = Activity.last
+	      	@image = ActivityImage.new
+	      	@image.activity_id = @activity.id 
+	      	@image.image = params[:activity][:image1].original_filename.to_s
+			@image.save
 
-		File.open(Rails.root.join('app/assets', 'images', params[:activity][:image1].original_filename), 'wb') do |f| f.write(params[:activity][:image1].read) end
+			File.open(Rails.root.join('app/assets', 'images', params[:activity][:image1].original_filename), 'wb') do |f| f.write(params[:activity][:image1].read) end
 
-      	render "new"		
+	      	#render "new"
+	    #else
+	    	#flash[:notice] = "Etkinlik oluşturma yetkiniz yok!!!"
+	    	#flash[:color]= "invalid"
+	    	#render "new"
+	    end
+	    render "new"	  			
 	end
 
 	def edit
