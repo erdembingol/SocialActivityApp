@@ -15,8 +15,24 @@ class SessionsController < ApplicationController
 	def profile
 		@user = User.find(session[:user_id])
 
+		@today = Date.today
+		#@finish_date = @activity.finish_date
+
+		############################################
+		@activities = Activity.find_by_sql "select a.* from activities a, joined_think_activities jta where 
+			a.id == jta.activity_id"
+
+		@activities.each do |act|
+			@diff_date = (@today - act.finish_date)
+			if @diff_date > 0
+				@activity = JoinedActivity.new(:user_id => session[:user_id], :activity_id => act.id)
+				@activity.save
+				JoinedThinkActivity.find_by_activity_id(act.id).destroy
+			end	
+		end	
+		############################################	
 		@joined_activities = Activity.find_by_sql "select ai.image, a.* from activity_images ai, activities a, 
-			joined_activities ja where ja.user_id == '#{session[:user_id]}' and ja.activity_id == a.id and ai.activity_id == a.id"
+			joined_activities ja where ja.user_id == '#{session[:user_id]}' and ja.activity_id == a.id and ai.activity_id == a.id "
 		@joined_activities_size = @joined_activities.size
 
 		@joined_think_activities = Activity.find_by_sql "select ai.image, a.* from activity_images ai, activities a, 
