@@ -29,6 +29,14 @@
 	Etkinlik Adresi: <%= @activity.place_adress %>
 </p>
 
+<h4> Katılanlar </h4>
+<% @users.each do |user| %>
+	<p> 
+		<%= image_tag(user.profil_image, :size => "64x64", :alt => "Show Group") %> <%= user.name %> <%= user.lastname %> 
+	</p>
+	<hr>
+<% end %> 
+
 <h4> Yorumlar </h4>
 <% @commentts.each do |commentt| %>
 	<p> 

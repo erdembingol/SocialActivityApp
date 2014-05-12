@@ -87,6 +87,7 @@ class SessionsController < ApplicationController
 
 	def logout
 		session[:user_id] = nil
+		session[:activity_id] = nil
 		redirect_to :action => 'login'
 	end
 end

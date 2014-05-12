@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
     def create
     	@user = User.new(params[:user])
-      @user.profil_image = params[:user][:profil_image].original_filename.to_s
+      @user.profil_image = params[:user][:profil_image].original_filename
 
       File.open(Rails.root.join('app/assets', 'images', params[:user][:profil_image].original_filename), 'wb') do |f| f.write(params[:user][:profil_image].read) end
         

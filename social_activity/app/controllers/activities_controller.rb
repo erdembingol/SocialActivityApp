@@ -15,6 +15,8 @@ class ActivitiesController < ApplicationController
 	 	#@commentts = Commentt.find_by_sql "select ui.image, c.body from user_images ui, users u, commentts c
 	 			#where c.activity_id == 'params[:id]' and c.user_id == ui.user_id"			
 		############################
+		@users = User.find_by_sql "select u.* from users u, joined_think_activities jta
+			where u.id == jta.user_id and jta.activity_id == #{session[:activity_id]}"
 	end
 
 	def new
@@ -29,10 +31,15 @@ class ActivitiesController < ApplicationController
 		@birth_date = @user.birth_date
 		@diff = (@today - @birth_date)/365
 
-		@joined_think_activities = JoinedThinkActivity.find_by_activity_id(session[:activity_id])
-		@joined_activities = JoinedActivity.find_by_activity_id(session[:activity_id]) 
+		@joined_think_activities = JoinedThinkActivity.find_by_sql "select jta.* from joined_think_activities jta
+			where jta.activity_id == #{session[:activity_id]} and jta.user_id == #{session[:user_id]}"
+		@joined_activities = JoinedActivity.find_by_sql "select jta.* from joined_activities jta
+			where jta.activity_id == #{session[:activity_id]} and jta.user_id == #{session[:user_id]}"	
 
-		if @joined_think_activities == nil and @joined_activities == nil
+		#@joined_think_activities = JoinedThinkActivity.find_by_activity_id(session[:activity_id])
+		#@joined_activities = JoinedActivity.find_by_activity_id(session[:activity_id]) 
+
+		if @joined_think_activities.empty? and @joined_activities.empty?
 			if @activity.age_group.to_s.eql? "0-7"
 				if @activity.gender.to_s.eql? @user.gender.to_s or @activity.gender.to_s.eql? "Hepsi"
 					if @diff >= 0 && @diff <= 7
@@ -89,7 +96,7 @@ class ActivitiesController < ApplicationController
 				end	
 			end
 		else
-			flash[:notice] = "Bu activite zaten listenizde mevcut"	
+			flash[:notice] = "Bu activite zaten listenizde mevcut #{session[:activity_id]} #{session[:user_id]}"	
 		end
 
 		#redirect_to :action => 'activities'
