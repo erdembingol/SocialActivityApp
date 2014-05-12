@@ -11,13 +11,24 @@ class ActivitiesController < ApplicationController
 		#set_activity_id(params[:id])############################################
 		@activity = Activity.find(params[:id])
 		@activity_image = ActivityImage.find_by_activity_id(params[:id])
-		@commentts = Comment.find_by_sql "select ui.image, c.body from user_images ui, users u, commentts c"
+		@commentt = Commentt.new
+		@commentts = Commentt.find_by_sql "select u.profil_image, c.* from users u, commentts c
+			where u.id == c.user_id"
 	 	#@commentts = Commentt.find_by_sql "select ui.image, c.body from user_images ui, users u, commentts c
 	 			#where c.activity_id == 'params[:id]' and c.user_id == ui.user_id"			
 		############################
 		@users = User.find_by_sql "select u.* from users u, joined_think_activities jta
 			where u.id == jta.user_id and jta.activity_id == #{session[:activity_id]}"
 	end
+
+	def do_commentt
+		@commentt = Commentt.new(:user_id => session[:user_id], :activity_id => session[:activity_id], :body => params[:commentt][:body])
+		if @commentt.save
+			redirect_to activities_path
+		else	
+			render "show"
+		end	
+	end	
 
 	def new
 		@activity = Activity.new
@@ -103,13 +114,6 @@ class ActivitiesController < ApplicationController
 		#@joined_think_activity = JoinedThinkActivity.new(:user_id => session[:user_id], :activity_id => @@now_activity_id)#######################
 		#@joined_think_activity.save
 	end 
-
-	#def do_comment
-		#@commentt = Commentt.new(session[:current_user_id], params[:body])
-		#@commentt.save
-		#render "show"
-		#end	
-	#end	
 
 	def create
 		@user = User.find(session[:user_id])

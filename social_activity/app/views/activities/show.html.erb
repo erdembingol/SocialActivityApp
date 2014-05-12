@@ -38,17 +38,24 @@
 <% end %> 
 
 <h4> Yorumlar </h4>
-<% @commentts.each do |commentt| %>
+<% @commentts.each do |com| %>
 	<p> 
-		Etkinlik Resmi : <%= image_tag(commentt.image, :size => "64x64", :alt => "Show Group") %>
-	</p>
-	<p>
-	 	Etkinlik Yeri : <%= commentt.body %> 
+		<%= image_tag(com.profil_image, :size => "64x64", :alt => "Show Group") %>
+	 	<%= com.body %> 
 	</p>
 	<p> 
-		Created : <%= commentt.created_at %> 
+		Created : <%= com.created_at %> 
 	</p>
 	<hr>
+<% end %>
+
+<%= form_for(:commentt, :url => {:controller => 'activities', :action => 'do_commentt'}) do |f| %>
+	<p>
+		<%= f.text_area :body %>
+	</p>
+	<p>
+		<%= f.submit "Yorum Yap" %>
+	</p>
 <% end %> 
 
 
